@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Gerenciador Empresarial </title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<!-- Outros links e metadados -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Popover Example</title>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<!-- Open Iconic CSS -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+
+	<!-- Bootstrap core CSS -->
+	<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+
+	<!-- Custom styles for this template -->
+	<link href="/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+	<header>
+		<nav class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="btn btn-dark navbar-toggle pull-left">
+						<i class="oi oi-menu"></i>
+					</button>
+					<a class="navbar-brand navbar-toggle pull-left" href="#">Gerenciador Empresarial </a>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<div class="layout-main">
+
+		<aside>
+			<nav class="sidebar  sidebar-open">
+				<ul class="nav nav-pills">
+					<li class="nav-item"><a class="nav-link " href="/"> <i class="oi oi-home"></i> <span>Home</span>
+						</a></li>
+				</ul>
+
+				<ul class="nav nav-pills">
+					<li class="nav-item"><span class="nav-link active">Departamentos</span></li>
+					<li class="nav-item"><a class="nav-link" href="departamentoscadastrar"> <i class="oi oi-plus"></i>
+							<span>Cadastrar</span>
+						</a></li>
+					<li class="nav-item"><a class="nav-link" href="departamentoslistar"> <i
+								class="oi oi-spreadsheet"></i>
+							<span>Listar </span>
+						</a></li>
+				</ul>
+
+				<ul class="nav nav-pills">
+					<li class="nav-item"><span class="nav-link active">Cargos</span></li>
+					<li class="nav-item"><a class="nav-link" href="cargoscadastrar"> <i class="oi oi-plus"></i>
+							<span>Cadastrar </span>
+						</a></li>
+					<li class="nav-item"><a class="nav-link" href="cargoslistar"> <i class="oi oi-spreadsheet"></i>
+							<span>Listar </span>
+						</a></li>
+				</ul>
+
+				<ul class="nav nav-pills">
+					<li class="nav-item"><span class="nav-link active">Funcionários</span></li>
+					<li class="nav-item"><a class="nav-link" href="funcionarioscadastrar"> <i class="oi oi-plus"></i>
+							<span>Cadastrar </span>
+						</a></li>
+					<li class="nav-item"><a class="nav-link" href="funcionarioslistar"> <i
+								class="oi oi-spreadsheet"></i>
+							<span>Listar </span>
+						</a></li>
+				</ul>
+			</nav>
+		</aside>
+
+		<section class="layout-content">
+			<nav class="navbar navbar-expand-md bg-light">
+				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<i class="oi oi-caret-right"></i>
+							<span>Lista de Funcionários</span>
+						</li>
+					</ul>
+					<a class="btn btn-primary btn-md" th:href="@{funcionarioscadastrar}" role="button">
+						<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
+						<span>Cadastrar Funcionários</span>
+					</a>
+				</div>
+			</nav>
+
+			<div class="container">
+
+				<p>
+					<i class="oi oi-magnifying-glass"></i><span></span>
+					<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNome"
+						aria-controls="collapseNome">Nome
+					</button>
+					<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCargo"
+						aria-controls="collapseCargo">Cargo
+					</button>
+					<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseData"
+						aria-controls="collapseData">Datas
+					</button>
+				</p>
+				<div class="row">
+					<div class="col">
+						<div class="collapse" id="collapseNome">
+
+							<nav class="navbar navbar-light bg-light">
+								<form class="form-inline" method="GET" th:action="@{/funcionarios/buscar/nome}">
+									<input class="form-control mr-sm-2" type="search" placeholder="nome"
+										aria-label="Search" name="nome" />
+									<button class="btn btn-outline-success my-2 my-sm-0">Search</button>
+								</form>
+							</nav>
+
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="collapse" id="collapseCargo">
+
+							<nav class="navbar navbar-light bg-light">
+								<form class="form-inline" method="GET" th:action="@{/funcionarios/buscar/cargo}">
+									<select class="form-control mr-sm-2" th:name="id" aria-label="Search">
+										<option value="">Cargo</option>
+										<option th:each="c : ${cargos}" th:value="${c.id}" th:text="${c.nome}">Auxiliar
+											Contábil</option>
+
+									</select>
+									<button class="btn btn-outline-success my-2 my-sm-0">Search</button>
+								</form>
+							</nav>
+
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="collapse" id="collapseData">
+
+							<nav class="navbar navbar-light bg-light">
+								<form class="form-inline" method="GET" th:action="@{/funcionarios/buscar/data}">
+									<input class="form-control mr-sm-2" type="date" aria-label="Search"
+										th:name="entrada" />
+									<input class="form-control mr-sm-2" type="date" aria-label="Search" th:name="saida" />
+									<button class="btn btn-outline-success my-2 my-sm-0">Search</button>
+								</form>
+							</nav>
+
+						</div>
+					</div>
+				</div>
+
+
+				<div class="table-responsive">
+
+
+					<table class="table table-striped table-hover table-sm">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Nome</th>
+								<th>Salário</th>
+								<th>Departamento</th>
+								<th>Cargo</th>
+								<th>Logradouro</th>
+								<th>Numero</th>
+								<th>Bairro</th>
+								<th>Cidade</th>
+								<th>Unidade Federativa</th>
+								<th>Cep</th>
+								<th>Data de Entrada</th>
+								<th>Data de Saída</th>
+								<th>Ação</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="f:${funcionarios}">
+								<td th:text="${f.id}"></td>
+								<td th:text="${f.nome}"></td>
+								<td th:text="|R$ ${{f.salario}}|"></td>
+								<td th:text="${f.cargo.departamento.nome}"></td>
+								<td th:text="${f.cargo.nome}"></td>
+								<td th:text="${f.endereco.logradouro}"></td>
+								<td th:text="${f.endereco.numero}"></td>
+								<td th:text="${f.endereco.bairro}"></td>
+								<td th:text="${f.endereco.cidade}"></td>
+								<td th:text="${f.endereco.uf.sigla}"></td>
+								<td th:text="${f.endereco.cep}"></td>
+								<td th:text="${#temporals.format(f.dataEntrada, 'dd/MM/yyyy')}"></td>
+								<td th:text="${#temporals.format(f.dataSaida, 'dd/MM/yyyy')}"></td>
+								<td colspan="2">
+									<a class="btn btn-info btn-sm" th:href="@{/funcionarios/editar/{id} (id=${f.id}) }"
+										role="button">
+										<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+									</a>
+									<form th:action="@{/funcionario/excluir}" method="post" style="display: inline;">
+										<input type="hidden" name="id" th:value="${f.id}">
+										<button type="submit" class="btn btn-danger btn-sm" data-toggle="modal"
+											data-target="#myModal">
+											<span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
+										</button>
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+	<footer class="layout-footer">
+		<div class="container">
+			<span class="footer-copy">&copy; 2018 MBallem. Todos os direitos reservados.</span>
+		</div>
+	</footer>
+	<!-- jQuery and Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<!-- Bootstrap core JavaScript
+================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<script>
+		// Seleciona todos os elementos com a classe "btn btn-secondary btn-sm"
+		var botoes = document.querySelectorAll(".btn.btn-secondary.btn-sm");
+		// Adiciona um ouvinte de evento a cada botão
+		botoes.forEach(function (botao) {
+			botao.addEventListener("click", function () {
+				// Seleciona o próximo elemento irmão com a classe "meuConteudo"
+				var conteudo = botao.nextElementSibling;
+				// Verifica se o conteúdo está oculto
+				if (conteudo.style.display === "none") {
+					// Se estiver oculto, mostra o conteúdo
+					conteudo.style.display = "block";
+				} else {
+					// Se não, oculta o conteúdo
+					conteudo.style.display = "none";
+				}
+			});
+		});
+	</script>
+
+	<script>
+		$(document).ready(function () {
+			// Ativar popovers
+			$('[data-toggle="popover"]').popover({
+				trigger: 'hover' // Mostrar o popover ao passar o mouse
+			});
+
+			// Alternar a classe da barra lateral ao clicar no botão de navegação
+			$(".navbar-toggle").click(function () {
+				$(".sidebar").toggleClass("sidebar-open");
+			});
+		});
+	</script>
+	<script src="https://unpkg.com/@popperjs/core@2"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+</body>
+
+</html>

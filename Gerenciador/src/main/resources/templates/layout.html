@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Título da Página</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+    <header th:replace="~{fragments/header :: cabecalho}">
+            header   
+    </header>
+
+    <div class="layout-main">
+        <aside>
+            <nav th:replace="~{fragments/sidebar :: nav-sidebar}">
+>
+               <span> menu </span>
+            </nav>
+        </aside>
+        <section layout:fragment="corpo">
+            <div>
+                Conteúdo principal das páginas
+            </div>
+        </section>
+    </div>
+
+    <footer th:replace="~{fragments/footer :: rodape}">
+         <div>footer</div>
+    </footer>
+
+    <!-- JavaScript no final do documento para carregar mais rápido -->
+    <!-- jQuery -->
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Outros scripts personalizados -->
+    <script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script type="text/javascript">
+		var url = '';
+			
+			$('button[id*="btn_"]').click(function() {
+				url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+			});
+			
+			$('#ok_confirm').click(function() {
+				document.location.href = url;
+			});
+			
+        // Ativação de popovers
+        $(function() {
+            $('[data-toggle="popover"]').popover();
+        });
+
+        // Toggle da barra lateral
+        $(document).ready(function(){
+            $(".navbar-toggle").click(function(){
+                $(".sidebar").toggleClass("sidebar-open");
+            });
+        });
+    </script>
+</body>
+</html>
